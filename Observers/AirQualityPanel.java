@@ -1,9 +1,9 @@
-package src.Observers;
+package Observers;
 
-import src.Subjects.AirQualitySubject;
-import src.Subjects.AirQualitySubjectState;
-import src.Subjects.UISubject;
-import src.Subjects.UIUpdate;
+import Subjects.AirQualitySubject;
+import Subjects.AirQualitySubjectState;
+import Subjects.UISubject;
+import Subjects.UIUpdate;
 
 public class AirQualityPanel implements UIObserver {
     private double airParticles;
