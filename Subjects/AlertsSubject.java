@@ -30,7 +30,7 @@ public class AlertsSubject extends JPanel implements UISubject {
         observers.remove(o);
     }
     
-    public void notifyObservers() {
+    public void notifyObservers(Channel c) {
         UIUpdate currentState = new AlertsSubjectState(this);
         if (isPush) {
             for (UIObserver o : observers) {
@@ -54,12 +54,12 @@ public class AlertsSubject extends JPanel implements UISubject {
     // Methods for MiniBadgeBar / other observers
     public void addAlert(String alert) {
         alerts.add(alert);
-        notifyObservers();
+        notifyObservers(Channel.ALERTS);
     }
 
     public void removeAlert(String alert) {
         alerts.remove(alert);
-        notifyObservers();
+        notifyObservers(Channel.ALERTS);
     }
 
     // Return a copy of the alerts list to prevent external modification
