@@ -15,7 +15,7 @@ public class DashboardFrame extends JFrame {
 
     private final MapPanel mapPanel = new MapPanel(); // Not done
 
-    private final AQSubject aqSubject = new AQSubject(); // Not done
+    private final AirQualitySubject aqSubject = new AirQualitySubject(); // Not done
     private final AQPanel aqPanel = new AQPanel();  // Not done
 
     private final JLabel diagLabel = new JLabel();
