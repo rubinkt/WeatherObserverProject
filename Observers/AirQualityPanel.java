@@ -11,7 +11,6 @@ import Subjects.UIUpdate;
 
 
 public class AirQualityPanel extends JPanel implements UIObserver {
-public class AirQualityPanel implements UIObserver {
     private static final int STATES_LIMIT = 300;
 
     private ArrayList<AirQualitySubjectState> states;
