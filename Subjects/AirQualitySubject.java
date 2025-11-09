@@ -10,10 +10,10 @@ public class AirQualitySubject implements UISubject {
   private double airParticles; 
   private double ozone;
   
-  public AirQualitySubject() {
-    isPush = true;
-    observers = new ArrayList<>();
-}
+    public AirQualitySubject() {
+        isPush = true;
+        observers = new ArrayList<>();
+    }
 
     public void register(UIObserver o, Channel c) {
         observers.add(o);
