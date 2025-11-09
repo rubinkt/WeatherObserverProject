@@ -24,7 +24,7 @@ public class WeatherSubject extends JPanel implements UISubject {
     public void unregister(UIObserver o, Channel c) {
         observers.remove(o);
     }
-    public void notifyObservers() {
+    public void notifyObservers(Channel c) {
         UIUpdate currentState = new WeatherSubjectState(this);
         if (isPush) {
             for (UIObserver o : observers) {
@@ -47,11 +47,11 @@ public class WeatherSubject extends JPanel implements UISubject {
 
     public void setTemp(double temp) {
         this.temp = temp;
-        notifyObservers();
+        notifyObservers(Channel.WEATHER);
     }
     public void setSkyCondition(String condition) {
         this.skyCondition = condition;
-        notifyObservers();
+        notifyObservers(Channel.WEATHER);
     }
 
     public double getTemp() {
