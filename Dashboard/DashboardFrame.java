@@ -1,14 +1,23 @@
 import javax.swing.*;
 
 import Enums.Channel;
-import Observers.WeatherPanel;
-import Subjects.WeatherSubject;
+import Subjects.*;
+import Observers.*;
 
 import java.awt.*;
 
 public class DashboardFrame extends JFrame {
     private final WeatherSubject weatherSubject = new WeatherSubject();
     private final WeatherPanel weatherPanel = new WeatherPanel();
+
+    private final AlertSubject alertSubject = new AlertSubject(); // Not done
+    private final AlertsPanel alertsPanel = new AlertsPanel(); // Not done
+
+    private final MapPanel mapPanel = new MapPanel(); // Not done
+
+    private final AQSubject aqSubject = new AQSubject(); // Not done
+    private final AQPanel aqPanel = new AQPanel();  // Not done
+
     private final JLabel diagLabel = new JLabel();
     private final SubscriptionsPanel subsPanel;
     private final TimeBar timeBar = new TimeBar();
@@ -47,9 +56,9 @@ public class DashboardFrame extends JFrame {
 
         // Create cards
         DraggableCard weatherCard = new DraggableCard("Weather", weatherPanel);
-        DraggableCard mapCard = new DraggableCard("Map", placeholder("Map Panel"));
-        DraggableCard airCard = new DraggableCard("Air Quality", placeholder("Air Panel"));
-        DraggableCard alertsCard = new DraggableCard("Alerts", placeholder("Alerts Panel"));
+        DraggableCard mapCard = new DraggableCard("Map", mapPanel);
+        DraggableCard airCard = new DraggableCard("Air Quality", aqPanel);
+        DraggableCard alertsCard = new DraggableCard("Alerts", alertsPanel);
 
         // initial bounds
         weatherCard.setBounds(20, 20, 320, 200);
@@ -77,6 +86,9 @@ public class DashboardFrame extends JFrame {
 
         // Register observer and diagnostics updater
         weatherSubject.register(weatherPanel, Channel.WEATHER);
+        alertSubject.register(alertsPanel, Channel.ALERTS);
+        aqSubject.register(aqPanel, Channel.AIR_QUALITY);
+
         new javax.swing.Timer(500, e -> diagLabel.setText(Diagnostics.get().summaryHtml())).start();
 
         // Wire the timebar to a simple tick that currently forwards to the subject tick
@@ -88,7 +100,8 @@ public class DashboardFrame extends JFrame {
         });
     }
 
-    private void toggleTheme(boolean dark) {
+    private void toggleTheme(boolean dark) 
+    {
         darkMode = dark;
         Color bg = dark ? new Color(34,34,34) : UIManager.getColor("Panel.background");
         Color fg = dark ? Color.WHITE : UIManager.getColor("Label.foreground");
@@ -97,13 +110,5 @@ public class DashboardFrame extends JFrame {
         SwingUtilities.updateComponentTreeUI(this);
         // ensure diag text readable
         diagLabel.setForeground(fg);
-    }
-
-    private JComponent placeholder(String text) {
-        JLabel l = new JLabel(text, SwingConstants.CENTER);
-        l.setPreferredSize(new Dimension(200,100));
-        JPanel p = new JPanel(new BorderLayout());
-        p.add(l, BorderLayout.CENTER);
-        return p;
     }
 }

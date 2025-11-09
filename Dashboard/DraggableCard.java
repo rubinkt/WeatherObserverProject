@@ -18,24 +18,30 @@ public class DraggableCard extends JPanel {
         add(titleBar, BorderLayout.NORTH);
         add(content, BorderLayout.CENTER);
 
-        MouseAdapter ma = new MouseAdapter() {
+        MouseAdapter ma = new MouseAdapter() 
+        {
             private boolean resizing = false;
 
             @Override
-            public void mousePressed(MouseEvent e) {
+            public void mousePressed(MouseEvent e) 
+            {
                 dragStart = SwingUtilities.convertPoint(DraggableCard.this, e.getPoint(), getParent());
                 resizing = isInResizeZone(e.getPoint());
             }
 
             @Override
-            public void mouseDragged(MouseEvent e) {
+            public void mouseDragged(MouseEvent e) 
+            {
                 Point now = SwingUtilities.convertPoint(DraggableCard.this, e.getPoint(), getParent());
-                if (resizing) {
+                if(resizing) 
+                {
                     int newW = Math.max(120, now.x - getX());
                     int newH = Math.max(80, now.y - getY());
                     setPreferredSize(new Dimension(newW, newH));
                     revalidate();
-                } else {
+                } 
+                else 
+                {
                     int dx = now.x - dragStart.x;
                     int dy = now.y - dragStart.y;
                     setLocation(getX() + dx, getY() + dy);
@@ -44,7 +50,8 @@ public class DraggableCard extends JPanel {
             }
 
             @Override
-            public void mouseMoved(MouseEvent e) {
+            public void mouseMoved(MouseEvent e) 
+            {
                 setCursor(isInResizeZone(e.getPoint()) ? Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR) : Cursor.getDefaultCursor());
             }
         };
@@ -61,7 +68,8 @@ public class DraggableCard extends JPanel {
         });
     }
 
-    private boolean isInResizeZone(Point p) {
+    private boolean isInResizeZone(Point p) 
+    {
         return p.x >= getWidth() - RESIZE_ZONE && p.y >= getHeight() - RESIZE_ZONE;
     }
 }

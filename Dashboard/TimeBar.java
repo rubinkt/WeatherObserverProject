@@ -37,7 +37,8 @@ public class TimeBar extends JPanel {
         });
 
         scrubber.addChangeListener(e -> {
-            if (!scrubber.getValueIsAdjusting()) {
+            if (!scrubber.getValueIsAdjusting()) 
+            {
                 simPosition = scrubber.getValue();
                 // notify listener that we scrubbed to simPosition (optional)
                 if (listener != null) listener.tick(simPosition);
@@ -45,17 +46,20 @@ public class TimeBar extends JPanel {
         });
     }
 
-    private void togglePlay() {
+    private void togglePlay() 
+    {
         playing = !playing;
         playPause.setText(playing ? "Pause" : "Play");
         if (playing) simTimer.start(); else simTimer.stop();
     }
 
-    private void doStep() {
+    private void doStep() 
+    {
         for (int i=0;i<speedMultiplier;i++) advanceTick();
     }
 
-    private void advanceTick() {
+    private void advanceTick() 
+    {
         simPosition = (simPosition + 1) % (scrubber.getMaximum() + 1);
         scrubber.setValue(simPosition);
         if (listener != null) listener.tick(simPosition);
