@@ -18,7 +18,7 @@ public class DraggableCard extends JPanel {
         add(titleBar, BorderLayout.NORTH);
         add(content, BorderLayout.CENTER);
 
-        MouseAdapter ma = new MouseAdapter() 
+        MouseAdapter ma = new MouseAdapter()
         {
             private boolean resizing = false;
 
