@@ -2,7 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class TimeBar extends JPanel {
+public class TimeBar extends JPanel 
+{
     private final JButton playPause = new JButton("Play");
     private final JButton step = new JButton("Step");
     private final JComboBox<String> speed = new JComboBox<>(new String[]{"1×","5×","20×"});
@@ -15,7 +16,8 @@ public class TimeBar extends JPanel {
     public interface TickListener { void tick(long simMillis); }
     private TickListener listener;
 
-    public TimeBar() {
+    public TimeBar() 
+    {
         setLayout(new BorderLayout());
         JPanel controls = new JPanel(new FlowLayout(FlowLayout.LEFT));
         controls.add(playPause);

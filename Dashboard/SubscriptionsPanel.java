@@ -6,11 +6,13 @@ import Subjects.WeatherSubject;
 
 import java.awt.*;
 
-public class SubscriptionsPanel extends JPanel {
+public class SubscriptionsPanel extends JPanel 
+{
     private final JCheckBox weatherCb = new JCheckBox("Weather", true);
     private final JToggleButton weatherMode = new JToggleButton("Push");
 
-    public SubscriptionsPanel(WeatherSubject weatherSubject, WeatherPanel weatherPanel) {
+    public SubscriptionsPanel(WeatherSubject weatherSubject, WeatherPanel weatherPanel) 
+    {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createTitledBorder("Subscriptions Manager"));
 
