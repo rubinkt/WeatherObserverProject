@@ -33,7 +33,6 @@ public class TemperatureSlider extends JPanel {
 
         add(temperatureLabel, BorderLayout.WEST);
         add(temperatureSlider, BorderLayout.CENTER);
-        setBorder(BorderFactory.createTitledBorder("Weather Slider"));
     }
 
     private void updateTemperature(int newTemp) {
