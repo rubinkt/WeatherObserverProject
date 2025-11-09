@@ -6,8 +6,6 @@ import Subjects.AirQualitySubject;
 import Subjects.AirQualitySubjectState;
 import Subjects.UISubject;
 import Subjects.UIUpdate;
-import Subjects.WeatherSubject;
-import Subjects.WeatherSubjectState;
 
 public class AirQualityPanel implements UIObserver {
     private ArrayList<AirQualitySubjectState> states;
