@@ -1,4 +1,4 @@
-package src.Subjects;
+package Subjects;
 
 public class AirQualitySubjectState implements UIUpdate {
     private double airParticles;
