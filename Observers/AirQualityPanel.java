@@ -2,12 +2,15 @@ package Observers;
 
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
 import Subjects.AirQualitySubject;
 import Subjects.AirQualitySubjectState;
 import Subjects.UISubject;
 import Subjects.UIUpdate;
 
 
+public class AirQualityPanel extends JPanel implements UIObserver {
 public class AirQualityPanel implements UIObserver {
     private static final int STATES_LIMIT = 300;
 
