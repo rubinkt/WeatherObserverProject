@@ -1,6 +1,5 @@
 package Observers;
 
-import Enums.Channel;
 import Subjects.UISubject;
 import Subjects.UIUpdate;
 
