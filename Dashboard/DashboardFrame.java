@@ -11,20 +11,20 @@ public class DashboardFrame extends JFrame
     private final WeatherSubject weatherSubject = new WeatherSubject();
     private final WeatherPanel weatherPanel = new WeatherPanel();
 
-    //private final AlertSubject alertSubject = new AlertSubject(); // Not done
+    private final AlertsSubject alertSubject = new AlertsSubject(); // Not done
     private final AlertsPanel alertsPanel = new AlertsPanel(); // Not done
 
     private final MapPanel mapPanel = new MapPanel(); // Not done
 
     private final AirQualitySubject aqSubject = new AirQualitySubject(); // Not done
-    
     private final AirQualityPanel aqPanel = new AirQualityPanel();  // Not done
 
-    
-
     private final JLabel diagLabel = new JLabel();
-    //private final SubscriptionsPanel subsPanel;
+
+    private SubscriptionsPanel subsPanel;
+
     private final TimeBar timeBar = new TimeBar();
+
     private boolean darkMode = false;
 
     public DashboardFrame() 
@@ -49,10 +49,10 @@ public class DashboardFrame extends JFrame
         topBar.add(diagToggle);
         add(topBar, BorderLayout.NORTH);
 
-        // Left drawer (subscriptions)
-        // subsPanel = new SubscriptionsPanel(weatherSubject, weatherPanel);
-        // subsPanel.setPreferredSize(new Dimension(200, 100));
-        // add(subsPanel, BorderLayout.WEST);
+        //Subscription 
+        subsPanel = new SubscriptionsPanel(weatherSubject, weatherPanel, aqSubject, aqPanel, alertSubject, alertsPanel);
+        subsPanel.setPreferredSize(new Dimension(240, 100));
+        add(subsPanel, BorderLayout.WEST);
 
         // Center area with draggable absolute layout
         JLayeredPane center = new JLayeredPane();
@@ -91,8 +91,8 @@ public class DashboardFrame extends JFrame
 
         // Register observer and diagnostics updater
         weatherSubject.register(weatherPanel, Channel.WEATHER);
-        //alertSubject.register(alertsPanel, Channel.ALERTS); - Come back to this
-        //aqSubject.register(aqPanel, Channel.AIR_QUALITY); - Come back to this
+        alertSubject.register(alertsPanel, Channel.ALERTS);
+        aqSubject.register(aqPanel, Channel.AIR_QUALITY);
 
         new javax.swing.Timer(500, e -> diagLabel.setText(Diagnostics.get().summaryHtml())).start();
 
