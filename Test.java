@@ -25,7 +25,7 @@ public class Test {
         myWeatherPanel.goBack(1);
         myWeatherPanel.print();
         */
-
+        /*
         AirQualitySubject myAirQualitySubject = new AirQualitySubject();
         AirQualityPanel myAirQualityPanel = new AirQualityPanel();
         myAirQualitySubject.register(myAirQualityPanel, Channel.WEATHER);
@@ -52,5 +52,21 @@ public class Test {
         myAirQualityPanel.print();
         myAirQualityPanel.changeState(1);
         myAirQualityPanel.print();
+        */
+        AirQualitySubject myAirQualitySubject = new AirQualitySubject();
+        AirQualityPanel myAirQualityPanel = new AirQualityPanel();
+        myAirQualitySubject.register(myAirQualityPanel, Channel.AIR_QUALITY);
+        for (int n = 0; n < 1000; n++) {
+            myAirQualitySubject.setAirParticles(n % 7);
+        }
+        myAirQualityPanel.print();
+
+        WeatherSubject myWeatherSubject = new WeatherSubject();
+        WeatherPanel myWeatherPanel = new WeatherPanel();
+        myWeatherSubject.register(myWeatherPanel, Channel.WEATHER);
+        for (int n = 0; n < 1000; n++) {
+            myWeatherSubject.setTemp(20);
+        }
+        myWeatherPanel.print();
     }
 }
