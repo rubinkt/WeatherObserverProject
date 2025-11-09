@@ -23,7 +23,7 @@ public class AirQualitySubject implements UISubject {
         observers.remove(o);
     }
 
-    public void notifyObservers() {
+    public void notifyObservers(Channel c) {
         UIUpdate currentState = new AirQualitySubjectState(this);
         if (isPush) {
             for (UIObserver o : observers) {
@@ -48,12 +48,12 @@ public class AirQualitySubject implements UISubject {
     // Update Methods
     public void setAirParticles(double val) {
         airParticles = val;
-        notifyObservers();
+        notifyObservers(Channel.AIR_QUALITY);
     }
 
     public void setOzone(double val) {
         ozone = val;
-        notifyObservers();
+        notifyObservers(Channel.AIR_QUALITY);
     }
 
     // Getters
