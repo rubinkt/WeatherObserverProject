@@ -1,28 +1,49 @@
-package src.Observers;
+package Observers;
 
-import src.Subjects.AirQualitySubject;
-import src.Subjects.AirQualitySubjectState;
-import src.Subjects.UISubject;
-import src.Subjects.UIUpdate;
+import java.util.ArrayList;
+
+import Subjects.AirQualitySubject;
+import Subjects.AirQualitySubjectState;
+import Subjects.UISubject;
+import Subjects.UIUpdate;
+import Subjects.WeatherSubject;
+import Subjects.WeatherSubjectState;
 
 public class AirQualityPanel implements UIObserver {
+    private ArrayList<AirQualitySubjectState> states;
+    private int stateIndex;
     private double airParticles;
     private double ozone;
 
-public void update(UIUpdate u) {
-    AirQualitySubjectState state = (AirQualitySubjectState) u;
-    this.airParticles = state.getAirParticles();
-    this.ozone = state.getOzone();
-}
+    public AirQualityPanel() {
+        states = new ArrayList<AirQualitySubjectState>();
+        stateIndex = 0;
+    }
 
-public void onNotified(UISubject subj) {
-    AirQualitySubject airQuality = (AirQualitySubject) subj;
-    AirQualitySubjectState state = airQuality.getState();
-    this.airParticles = state.getAirParticles();
-    this.ozone = state.getOzone();
-}
+    public void update(UIUpdate u) {
+        stateIndex = states.size();
+        states.add((AirQualitySubjectState) u);
+        airParticles = states.get(stateIndex).getAirParticles();
+        ozone = states.get(stateIndex).getOzone();
+    }
 
-public void print() {
-    System.out.println("Air Quality - Air Particles: " + airParticles + ", Ozone: " + ozone);
-}
-}
+    public void onNotified(UISubject subj) {
+        AirQualitySubject aqs = (AirQualitySubject) subj;
+        states.add(aqs.getState());
+        airParticles = states.get(stateIndex).getAirParticles();
+        ozone = states.get(stateIndex).getOzone();
+    }
+
+    public void goBack(int n) { // goes back n states provided there are n states saved
+        if (stateIndex - n >= 0) {
+            stateIndex -= n;
+        }
+        AirQualitySubjectState newState = states.get(stateIndex);
+        airParticles = newState.getAirParticles();
+        ozone = newState.getOzone();
+    }
+
+    public void print() {
+        System.out.println("Air Quality - Air Particles: " + airParticles + ", Ozone: " + ozone);
+    }
+    }

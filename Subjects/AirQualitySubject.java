@@ -1,8 +1,8 @@
-package src.Subjects;
+package Subjects;
 
 import java.util.ArrayList;
-import src.Enums.Channel;
-import src.Observers.UIObserver;
+import Enums.Channel;
+import Observers.UIObserver;
 
 public class AirQualitySubject implements UISubject {
   private boolean isPush;
