@@ -12,9 +12,9 @@ import javax.swing.JPanel;
  */
 public class AlertsSubject extends JPanel implements UISubject {
 
-    private boolean isPush = true;
-    private List<UIObserver> observers;
-    private List<String> alerts;
+    private boolean isPush;
+    private ArrayList<UIObserver> observers;
+    private ArrayList<String> alerts;
 
     public AlertsSubject() {
         isPush = true;
@@ -48,7 +48,7 @@ public class AlertsSubject extends JPanel implements UISubject {
     }
 
     public AlertsSubjectState getState() {
-    return new AlertsSubjectState(this);
+        return new AlertsSubjectState(this);
     }
 
     // Methods for MiniBadgeBar / other observers
@@ -63,7 +63,7 @@ public class AlertsSubject extends JPanel implements UISubject {
     }
 
     // Return a copy of the alerts list to prevent external modification
-    public List<String> getAlerts() {
+    public ArrayList<String> getAlerts() {
         return new ArrayList<>(alerts);
     }
 }
