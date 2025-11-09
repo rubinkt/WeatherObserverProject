@@ -54,10 +54,14 @@ public class DashboardFrame extends JFrame
         // subsPanel.setPreferredSize(new Dimension(200, 100));
         // add(subsPanel, BorderLayout.WEST);
 
-        // Center area with draggable absolute layout
-        JLayeredPane center = new JLayeredPane();
-        center.setLayout(null); // absolute positioning for draggable cards
-        add(center, BorderLayout.CENTER);
+        JPanel subjectsPanel = new ControlsPanel(weatherSubject);
+        
+        add(subjectsPanel, BorderLayout.EAST);
+
+        // Observer area with draggable absolute layout
+        JLayeredPane observersPanel = new JLayeredPane();
+        observersPanel.setLayout(null); // absolute positioning for draggable cards
+        add(observersPanel, BorderLayout.CENTER);
 
         // Create cards
         DraggableCard weatherCard = new DraggableCard("Weather", weatherPanel);
@@ -71,10 +75,10 @@ public class DashboardFrame extends JFrame
         airCard.setBounds(20, 240, 320, 180);
         alertsCard.setBounds(360, 340, 320, 160);
 
-        center.add(weatherCard, JLayeredPane.DEFAULT_LAYER);
-        center.add(mapCard, JLayeredPane.DEFAULT_LAYER);
-        center.add(airCard, JLayeredPane.DEFAULT_LAYER);
-        center.add(alertsCard, JLayeredPane.DEFAULT_LAYER);
+        observersPanel.add(weatherCard, JLayeredPane.DEFAULT_LAYER);
+        observersPanel.add(mapCard, JLayeredPane.DEFAULT_LAYER);
+        observersPanel.add(airCard, JLayeredPane.DEFAULT_LAYER);
+        observersPanel.add(alertsCard, JLayeredPane.DEFAULT_LAYER);
 
         // Bottom time bar
         add(timeBar, BorderLayout.SOUTH);
