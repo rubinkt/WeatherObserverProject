@@ -6,6 +6,7 @@ import java.util.Stack;
 
 import javax.swing.JPanel;
 
+import Subjects.AirQualitySubjectState;
 import Subjects.UISubject;
 import Subjects.UIUpdate;
 import Subjects.WeatherSubject;
@@ -36,13 +37,14 @@ public class WeatherPanel extends JPanel implements UIObserver{
         skyCondition = states.get(stateIndex).getSkyCondition();
     }
 
-    public void goBack(int n) { // goes back n states provided there are n states saved
-        if (stateIndex - n >= 0) {
-            stateIndex -= n;
+    public void changeState(int n) { // if n is negative, it goes backwards; if n is positive, it goes forward
+        int potentialNewStateIndex = stateIndex + n;
+        if (potentialNewStateIndex >= 0 && potentialNewStateIndex < states.size()) {
+            stateIndex = potentialNewStateIndex;
+            WeatherSubjectState newState = states.get(stateIndex);
+            temp = newState.getTemp();
+            skyCondition = newState.getSkyCondition();
         }
-        WeatherSubjectState newState = states.get(stateIndex);
-        temp = newState.getTemp();
-        skyCondition = newState.getSkyCondition();
     }
     
     public void print() {

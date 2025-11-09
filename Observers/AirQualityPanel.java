@@ -32,13 +32,14 @@ public class AirQualityPanel implements UIObserver {
         ozone = states.get(stateIndex).getOzone();
     }
 
-    public void goBack(int n) { // goes back n states provided there are n states saved
-        if (stateIndex - n >= 0) {
-            stateIndex -= n;
+    public void changeState(int n) { // if n is negative, it goes backwards; if n is positive, it goes forward
+        int potentialNewStateIndex = stateIndex + n;
+        if (potentialNewStateIndex >= 0 && potentialNewStateIndex < states.size()) {
+            stateIndex = potentialNewStateIndex;
+            AirQualitySubjectState newState = states.get(stateIndex);
+            airParticles = newState.getAirParticles();
+            ozone = newState.getOzone();
         }
-        AirQualitySubjectState newState = states.get(stateIndex);
-        airParticles = newState.getAirParticles();
-        ozone = newState.getOzone();
     }
 
     public void print() {

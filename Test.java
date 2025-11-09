@@ -33,13 +33,24 @@ public class Test {
         myAirQualityPanel.print();
         myAirQualitySubject.setOzone(100);
         myAirQualityPanel.print();
-        myAirQualityPanel.goBack(1);
+        myAirQualityPanel.changeState(-1);
+        myAirQualityPanel.print();
+        myAirQualityPanel.changeState(1);
         myAirQualityPanel.print();
         myAirQualitySubject.setAirParticles(0);
         myAirQualityPanel.print();
-        myAirQualityPanel.goBack(1);
+        myAirQualityPanel.changeState(-1);
         myAirQualityPanel.print();
-        myAirQualityPanel.goBack(1);
-
+        myAirQualityPanel.changeState(-1);
+        myAirQualityPanel.changeState(-1);
+        myAirQualityPanel.changeState(-1);
+        myAirQualityPanel.changeState(-1);
+        myAirQualityPanel.print();
+        myAirQualityPanel.changeState(1);
+        myAirQualityPanel.print();
+        myAirQualityPanel.changeState(1);
+        myAirQualityPanel.print();
+        myAirQualityPanel.changeState(1);
+        myAirQualityPanel.print();
     }
 }
