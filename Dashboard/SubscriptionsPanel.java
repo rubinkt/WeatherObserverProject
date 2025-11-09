@@ -6,6 +6,7 @@ import Subjects.*;
 import Observers.*;
 
 import java.awt.*;
+import java.awt.event.ItemEvent;
 
 public class SubscriptionsPanel extends JPanel 
 {
@@ -67,5 +68,52 @@ public class SubscriptionsPanel extends JPanel
         alerts.add(alertsTop);
         add(alerts);
 
+        weatherMode.addActionListener(e ->{
+            boolean push = weatherMode.getSelectedItem().equals("Push");
+            weatherSubject.setMode(true);
+        });
+
+        aqMode.addActionListener(e ->{
+            boolean push = aqMode.getSelectedItem().equals("Push");
+            airSubject.setMode(true);
+        });
+
+        alertsMode.addActionListener(e ->{
+            boolean push = alertsMode.getSelectedItem().equals("Push");
+            alertsSubject.setMode(true);
+        });
+
+        weatherActive.addItemListener(e -> {
+            if(e.getStateChange() == ItemEvent.SELECTED)
+            {
+                weatherSubject.register(weatherPanel, Channel.WEATHER);
+            }
+            else
+            {
+                weatherSubject.unregister(weatherPanel, Channel.WEATHER);
+            }
+        });
+
+        aqActive.addItemListener(e -> {
+            if(e.getStateChange() == ItemEvent.SELECTED)
+            {
+                airSubject.register(airPanel, Channel.AIR_QUALITY);
+            }
+            else
+            {
+                airSubject.unregister(airPanel, Channel.AIR_QUALITY);
+            }
+        });
+
+        alertsActive.addItemListener(e -> {
+            if(e.getStateChange() == ItemEvent.SELECTED)
+            {
+                alertsSubject.register(alertsPanel, Channel.ALERTS);
+            }
+            else
+            {
+                alertsSubject.unregister(alertsPanel, Channel.ALERTS);
+            }
+        });
     }
 }
