@@ -2,12 +2,14 @@ package Observers;
 
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
 import Subjects.AirQualitySubject;
 import Subjects.AirQualitySubjectState;
 import Subjects.UISubject;
 import Subjects.UIUpdate;
 
-public class AirQualityPanel implements UIObserver {
+public class AirQualityPanel extends JPanel implements UIObserver {
     private ArrayList<AirQualitySubjectState> states;
     private int stateIndex;
     private double airParticles;
