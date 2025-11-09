@@ -11,9 +11,6 @@ import java.awt.event.ItemEvent;
 public class SubscriptionsPanel extends JPanel 
 {
 
-    private final JCheckBox weatherCb = new JCheckBox("Weather", true);
-    private final JToggleButton weatherMode = new JToggleButton("Push");
-
     public SubscriptionsPanel(WeatherSubject weatherSubject, WeatherPanel weatherPanel,
                                 AirQualitySubject airSubject, AirQualityPanel airPanel,
                                 AlertsSubject alertsSubject, AlertsPanel alertsPanel) 
@@ -70,17 +67,17 @@ public class SubscriptionsPanel extends JPanel
 
         weatherMode.addActionListener(e ->{
             boolean push = weatherMode.getSelectedItem().equals("Push");
-            weatherSubject.setMode(true);
+            weatherSubject.setMode(push);
         });
 
         aqMode.addActionListener(e ->{
             boolean push = aqMode.getSelectedItem().equals("Push");
-            airSubject.setMode(true);
+            airSubject.setMode(push);
         });
 
         alertsMode.addActionListener(e ->{
             boolean push = alertsMode.getSelectedItem().equals("Push");
-            alertsSubject.setMode(true);
+            alertsSubject.setMode(push);
         });
 
         weatherActive.addItemListener(e -> {

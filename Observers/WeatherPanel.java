@@ -1,12 +1,9 @@
 package Observers;
 
 import java.util.ArrayList;
-import java.util.Queue;
-import java.util.Stack;
 
 import javax.swing.JPanel;
 
-import Subjects.AirQualitySubjectState;
 import Subjects.UISubject;
 import Subjects.UIUpdate;
 import Subjects.WeatherSubject;
