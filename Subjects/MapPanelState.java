@@ -1,6 +1,5 @@
 package Subjects;
 
-import java.util.List;
 
 public class MapPanelState implements UIUpdate {
     private static int circleX;
