@@ -10,14 +10,13 @@ import java.util.ArrayList;
 import Observers.*;
 import javafx.event.ActionEvent;
 
-public class MapPanel extends JPanel implements UISubject
+public class MapPanel extends JPanel implements UISubject, ActionListener
 {
     private boolean isPush;
     private ArrayList<UIObserver> observers;
     private final JLabel label = new JLabel();
     private int circleX = 0;
     private int circleY = 0;
-    private Timer timer;
 
     public MapPanel() 
     {
@@ -26,6 +25,18 @@ public class MapPanel extends JPanel implements UISubject
         label.setFont(label.getFont().deriveFont(Font.BOLD, 18f));
         add(label, BorderLayout.CENTER);
         setBorder(BorderFactory.createTitledBorder("Map"));
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.setColor(Color.green);
+        g.fillOval(circleX,  circleY, 20, 20);
+    }
+
+    @Override
+    public void actionPerformed(java.awt.event.ActionEvent e) {
+        repaint();
     }
 
     public void register(UIObserver o, Channel c) {
@@ -52,12 +63,6 @@ public class MapPanel extends JPanel implements UISubject
 
     public void setMode(boolean isPush) {
         this.isPush = isPush;
-    }
-
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.setColor(Color.green);
-        g.fillOval(circleX, circleY, 50, 50);
     }
 
     public void setCircleX(int newX) {
