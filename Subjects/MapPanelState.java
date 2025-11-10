@@ -2,8 +2,8 @@ package Subjects;
 
 
 public class MapPanelState implements UIUpdate {
-    private static int circleX;
-    private static int circleY;
+    private int circleX;
+    private int circleY;
 
     public MapPanelState(MapPanel subj) {
         this.circleX = subj.getCircleX();
