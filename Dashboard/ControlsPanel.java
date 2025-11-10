@@ -6,6 +6,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import InputSliders.AirParticlesSlider;
+import InputSliders.TemperatureSlider;
 import Subjects.AirQualitySubject;
 import Subjects.MapPanel;
 import Subjects.WeatherSubject;
