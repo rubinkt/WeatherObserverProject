@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import InputSliders.AirParticlesSlider;
+import InputSliders.OzoneSlider;
 import InputSliders.TemperatureSlider;
 import Subjects.AirQualitySubject;
 import Subjects.MapPanel;
@@ -14,7 +15,7 @@ import Subjects.WeatherSubject;
 
 public class ControlsPanel extends JPanel {
     private JComboBox<String> weatherStateBox;
-    private JPanel weatherStatePanel;
+    private JPanel weatherPanel;
     private WeatherSubject weatherSubject;
 
     private JPanel airQualityStatePanel;
@@ -29,15 +30,12 @@ public class ControlsPanel extends JPanel {
         this.airQualitySubject = airQualitySubject;
         this.mapSubject = mapSubject;
 
-        airQualityStatePanel = new JPanel();
-        airQualityStatePanel.setLayout(new BoxLayout(airQualityStatePanel, BoxLayout.X_AXIS));
-
         mapPanel = new JPanel();
-        mapPanel.setLayout(new BoxLayout(mapPanel, BoxLayout.X_AXIS));
+        mapPanel.setLayout(new BoxLayout(mapPanel, BoxLayout.Y_AXIS));
 
         // Set appearance information
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setPreferredSize(new Dimension(300, 700));
+        setPreferredSize(new Dimension(500, 700));
         setBorder(BorderFactory.createTitledBorder("Subject Information"));
         
         // Create panels
@@ -48,13 +46,15 @@ public class ControlsPanel extends JPanel {
     
     private void createWeatherPanel() {
         // Define the weather panel
-        weatherStatePanel = new JPanel();
-        weatherStatePanel.setLayout(new BoxLayout(weatherStatePanel, BoxLayout.X_AXIS));
+        weatherPanel = new JPanel();
+        weatherPanel.setLayout(new BoxLayout(weatherPanel, BoxLayout.Y_AXIS));
+        weatherPanel.setBorder(BorderFactory.createTitledBorder("Weather"));
 
         // Add a new temperature slider
-        this.add(new TemperatureSlider(this.weatherSubject));
+        weatherPanel.add(new TemperatureSlider(this.weatherSubject));
 
         // Add a box to set the sky condition
+        JPanel weatherStatePanel = new JPanel();
         weatherStateBox = new JComboBox<>(new String[]{"Sunny", "Overcast", "Raining", "Snowing"});
         weatherStateBox.addActionListener(e -> {
             this.weatherSubject.setSkyCondition(weatherStateBox.getSelectedItem().toString());
@@ -62,14 +62,21 @@ public class ControlsPanel extends JPanel {
 
         weatherStatePanel.add(new JLabel("Weather Conditions: "));
         weatherStatePanel.add(weatherStateBox);
-        this.add(weatherStatePanel);
+        weatherPanel.add(weatherStatePanel);
+        this.add(weatherPanel);
     }
 
     private void createAirQualityPanel() {
+        airQualityStatePanel = new JPanel();
+        airQualityStatePanel.setLayout(new BoxLayout(airQualityStatePanel, BoxLayout.Y_AXIS));
+        airQualityStatePanel.setBorder(BorderFactory.createTitledBorder("Air Quality"));
+        
         // Add an air particle slider
-        add(new AirParticlesSlider(airQualitySubject));
+        airQualityStatePanel.add(new AirParticlesSlider(airQualitySubject));
         
         // Add an ozone slider
-        // TODO
+        airQualityStatePanel.add(new OzoneSlider(airQualitySubject));
+
+        add(airQualityStatePanel);
     }
 }

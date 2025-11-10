@@ -29,7 +29,7 @@ public class DashboardFrame extends JFrame
     {
         super("Observer-Only Smart Dashboard");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1250, 700);
+        setSize(1450, 700);
         setLayout(new BorderLayout());
 
         // Top bar
