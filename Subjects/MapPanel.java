@@ -4,11 +4,13 @@ import javax.swing.*;
 import Enums.Channel;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import Observers.*;
+import javafx.event.ActionEvent;
 
-public class MapPanel extends JPanel implements UISubject
+public class MapPanel extends JPanel implements UISubject, ActionListener
 {
     private boolean isPush;
     private ArrayList<UIObserver> observers;
@@ -23,6 +25,18 @@ public class MapPanel extends JPanel implements UISubject
         label.setFont(label.getFont().deriveFont(Font.BOLD, 18f));
         add(label, BorderLayout.CENTER);
         setBorder(BorderFactory.createTitledBorder("Map"));
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.setColor(Color.green);
+        g.fillOval(circleX,  circleY, 20, 20);
+    }
+
+    @Override
+    public void actionPerformed(java.awt.event.ActionEvent e) {
+        repaint();
     }
 
     public void register(UIObserver o, Channel c) {
@@ -51,15 +65,11 @@ public class MapPanel extends JPanel implements UISubject
         this.isPush = isPush;
     }
 
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.setColor(Color.green);
-        g.fillOval(circleX, circleY, 50, 50);
+    public void setCircleX(int newX) {
+        this.circleX = newX;
     }
-
-    public void setCirclePosition(int newX, int newY) {
-        circleX = newX;
-        circleY = newY;
+    public void setCircleY(int newY) {
+        this.circleY = newY;
     }
 
     public int getCircleX() {

@@ -14,9 +14,6 @@ public abstract class InputSlider extends JPanel {
     private JSlider valueSlider;
     private JLabel valueLabel;
 
-    private int minValue;
-    private int maxValue;
-    private int defaultValue;
     private int currentValue;
 
     private String labelTopic;
@@ -28,9 +25,6 @@ public abstract class InputSlider extends JPanel {
         // Initialize fields
         this.observer = observer;
         
-        this.minValue = minValue;
-        this.maxValue = maxValue;
-        this.defaultValue = defaultValue;
         currentValue = defaultValue;
 
         this.labelTopic = labelTopic;
