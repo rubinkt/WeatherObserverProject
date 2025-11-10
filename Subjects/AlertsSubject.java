@@ -1,7 +1,6 @@
 package Subjects;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import Enums.Channel;
 import Observers.UIObserver;

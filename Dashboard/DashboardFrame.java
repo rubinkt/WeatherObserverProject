@@ -11,27 +11,25 @@ public class DashboardFrame extends JFrame
     private final WeatherSubject weatherSubject = new WeatherSubject();
     private final WeatherPanel weatherPanel = new WeatherPanel();
 
-    private final AlertsSubject alertSubject = new AlertsSubject(); // Not done
-    private final AlertsPanel alertsPanel = new AlertsPanel(); // Not done
+    private final AlertsSubject alertSubject = new AlertsSubject();
+    private final AlertsPanel alertsPanel = new AlertsPanel();
 
-    private final MapPanel mapPanel = new MapPanel(); // Not done
+    private final MapPanel mapPanel = new MapPanel();
 
-    private final AirQualitySubject aqSubject = new AirQualitySubject(); // Not done
-    private final AirQualityPanel aqPanel = new AirQualityPanel();  // Not done
+    private final AirQualitySubject aqSubject = new AirQualitySubject();
+    private final AirQualityPanel aqPanel = new AirQualityPanel();
 
     private final JLabel diagLabel = new JLabel();
 
-    private SubscriptionsPanel subsPanel;
+    private static SubscriptionsPanel subsPanel;
 
     private final TimeBar timeBar = new TimeBar();
-
-    private boolean darkMode = false;
 
     public DashboardFrame() 
     {
         super("Observer-Only Smart Dashboard");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1250, 700);
+        setSize(1450, 700);
         setLayout(new BorderLayout());
 
         // Top bar
@@ -54,7 +52,7 @@ public class DashboardFrame extends JFrame
         subsPanel.setPreferredSize(new Dimension(240, 100));
         add(subsPanel, BorderLayout.WEST);
 
-        JPanel subjectsPanel = new ControlsPanel(weatherSubject);
+        JPanel subjectsPanel = new ControlsPanel(weatherSubject, aqSubject, mapPanel);
         
         add(subjectsPanel, BorderLayout.EAST);
 
@@ -80,15 +78,16 @@ public class DashboardFrame extends JFrame
         observersPanel.add(airCard, JLayeredPane.DEFAULT_LAYER);
         observersPanel.add(alertsCard, JLayeredPane.DEFAULT_LAYER);
 
-        // Bottom time bar
+        // Adding TimeBar
         add(timeBar, BorderLayout.SOUTH);
 
-        // Diagnostics label (overlay area at top-right)
+        // Diagnostics Label
         diagLabel.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
         diagLabel.setOpaque(true);
         diagLabel.setBackground(new Color(255,255,255,200));
         diagLabel.setBounds(getWidth()-260, 10, 240, 120);
         diagLabel.setVisible(false);
+
         // We'll simply add it to NORTH as a lightweight overlay alternative
         topBar.add(Box.createHorizontalStrut(20));
         topBar.add(diagLabel);
@@ -111,10 +110,10 @@ public class DashboardFrame extends JFrame
 
     private void toggleTheme(boolean dark) 
     {
-        darkMode = dark;
         Color bg = dark ? new Color(34,34,34) : UIManager.getColor("Panel.background");
         Color fg = dark ? Color.WHITE : UIManager.getColor("Label.foreground");
         getContentPane().setBackground(bg);
+        subsPanel.setBackground(bg);
         // naive theme propagation:
         SwingUtilities.updateComponentTreeUI(this);
         // ensure diag text readable
