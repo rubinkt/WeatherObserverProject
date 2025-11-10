@@ -97,15 +97,12 @@ public class DashboardFrame extends JFrame
         alertSubject.register(alertsPanel, Channel.ALERTS);
         aqSubject.register(aqPanel, Channel.AIR_QUALITY);
 
-        new javax.swing.Timer(500, e -> diagLabel.setText(Diagnostics.get().summaryHtml())).start();
+        //Label for temperature
+        JLabel weatherLabel = new JLabel();
+        weatherPanel.add(weatherLabel);
 
-        // Wire the timebar to a simple tick that currently forwards to the subject tick
-        // For now we call weatherSubject.notify(Channel.WEATHER) on tick so the UI-only time bar drives it
-        timeBar.setTickListener(simMillis -> {
-            // In a full implementation you'd use simMillis as the simulated time index.
-            // Here we use it as a simple driver to produce updates:
-            weatherSubject.notifyObservers(Channel.WEATHER);
-        });
+        new javax.swing.Timer(500, e -> diagLabel.setText(Diagnostics.get().summaryHtml())).start();
+        new javax.swing.Timer(500, e -> weatherLabel.setText(weatherPanel.updateString())).start();
     }
 
     private void toggleTheme(boolean dark) 
