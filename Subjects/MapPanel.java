@@ -4,9 +4,11 @@ import javax.swing.*;
 import Enums.Channel;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import Observers.*;
+import javafx.event.ActionEvent;
 
 public class MapPanel extends JPanel implements UISubject
 {
@@ -15,6 +17,7 @@ public class MapPanel extends JPanel implements UISubject
     private final JLabel label = new JLabel();
     private int circleX = 0;
     private int circleY = 0;
+    private Timer timer;
 
     public MapPanel() 
     {
@@ -57,9 +60,11 @@ public class MapPanel extends JPanel implements UISubject
         g.fillOval(circleX, circleY, 50, 50);
     }
 
-    public void setCirclePosition(int newX, int newY) {
-        circleX = newX;
-        circleY = newY;
+    public void setCircleX(int newX) {
+        this.circleX = newX;
+    }
+    public void setCircleY(int newY) {
+        this.circleY = newY;
     }
 
     public int getCircleX() {
