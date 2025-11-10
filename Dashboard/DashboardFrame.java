@@ -52,7 +52,7 @@ public class DashboardFrame extends JFrame
         subsPanel.setPreferredSize(new Dimension(240, 100));
         add(subsPanel, BorderLayout.WEST);
 
-        JPanel subjectsPanel = new ControlsPanel(weatherSubject);
+        JPanel subjectsPanel = new ControlsPanel(weatherSubject, aqSubject, mapPanel);
         
         add(subjectsPanel, BorderLayout.EAST);
 
