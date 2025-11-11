@@ -24,6 +24,7 @@ public class MapPanel extends JPanel implements UISubject, ActionListener
         label.setFont(label.getFont().deriveFont(Font.BOLD, 18f));
         add(label, BorderLayout.CENTER);
         setBorder(BorderFactory.createTitledBorder("Map"));
+        observers = new ArrayList<>();
     }
 
     @Override
@@ -66,9 +67,13 @@ public class MapPanel extends JPanel implements UISubject, ActionListener
 
     public void setCircleX(int newX) {
         this.circleX = newX;
+        notifyObservers(Channel.TRANSIT);
+        repaint();
     }
     public void setCircleY(int newY) {
         this.circleY = newY;
+        notifyObservers(Channel.TRANSIT);
+        repaint();
     }
 
     public int getCircleX() {
