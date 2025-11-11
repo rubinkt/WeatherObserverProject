@@ -37,6 +37,8 @@ public class DashboardFrame extends JFrame
 
     private final TimeBar timeBar = new TimeBar();
 
+    private int updateDelayMS;
+
     public DashboardFrame() 
     {
         super("Observer-Only Smart Dashboard");
@@ -132,11 +134,13 @@ public class DashboardFrame extends JFrame
         //Label for alerts
         alertsPanel.add(alertLabel);
 
-        new javax.swing.Timer(500, e -> diagLabel.setText(Diagnostics.get().summaryHtml())).start();
-        new javax.swing.Timer(500, e -> weatherTemperatureLabel.setText(weatherPanel.updateTemperatureString())).start();
-        new javax.swing.Timer(100, e -> weatherSkyConditionLabel.setText(weatherPanel.updateSkyConditionString())).start();
-        new javax.swing.Timer(100, e -> aqParticlesLabel.setText(aqPanel.updateAirParticlesString())).start();
-        new javax.swing.Timer(100, e -> aqOzoneLabel.setText(aqPanel.updateOzoneString())).start();
+        // Timers for regular functionality
+        updateDelayMS = 10;
+        new javax.swing.Timer(updateDelayMS, e -> diagLabel.setText(Diagnostics.get().summaryHtml())).start();
+        new javax.swing.Timer(updateDelayMS, e -> weatherTemperatureLabel.setText(weatherPanel.updateTemperatureString())).start();
+        new javax.swing.Timer(updateDelayMS, e -> weatherSkyConditionLabel.setText(weatherPanel.updateSkyConditionString())).start();
+        new javax.swing.Timer(updateDelayMS, e -> aqParticlesLabel.setText(aqPanel.updateAirParticlesString())).start();
+        new javax.swing.Timer(updateDelayMS, e -> aqOzoneLabel.setText(aqPanel.updateOzoneString())).start();
 
         //Not Working
         new javax.swing.Timer(100, e -> alertLabel.setText(alertsPanel.changeAlerts())).start();
