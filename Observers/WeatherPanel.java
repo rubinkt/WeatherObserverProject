@@ -3,7 +3,10 @@ package Observers;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+import javax.tools.Diagnostic;
 
+import Dashboard.Diagnostics;
+import Enums.Channel;
 import Subjects.UISubject;
 import Subjects.UIUpdate;
 import Subjects.WeatherSubject;
@@ -31,6 +34,7 @@ public class WeatherPanel extends JPanel implements UIObserver{
         states.add((WeatherSubjectState) u);
         temp = states.get(stateIndex).getTemp();
         skyCondition = states.get(stateIndex).getSkyCondition();
+        Diagnostics.get().recordEvent(Channel.WEATHER);
     }
 
     public void onNotified(UISubject subj) {
@@ -41,6 +45,7 @@ public class WeatherPanel extends JPanel implements UIObserver{
         states.add(ws.getState());
         temp = states.get(stateIndex).getTemp();
         skyCondition = states.get(stateIndex).getSkyCondition();
+        Diagnostics.get().recordEvent(Channel.WEATHER);
     }
 
     public void changeState(int n) 

@@ -1,3 +1,5 @@
+package Dashboard;
+
 import javax.swing.*;
 
 import Enums.Channel;
@@ -107,6 +109,10 @@ public class DashboardFrame extends JFrame
         alertSubject.register(alertsPanel, Channel.ALERTS);
         weatherSubject.register(alertSubject, Channel.ALERTS);
         aqSubject.register(aqPanel, Channel.AIR_QUALITY);
+
+        Diagnostics.get().setMode(Channel.WEATHER.toString(), "Push");
+        Diagnostics.get().setMode(Channel.ALERTS.toString(), "Push");
+        Diagnostics.get().setMode(Channel.AIR_QUALITY.toString(), "Push");
 
         //Label for temperature
         weatherPanel.setLayout(new BoxLayout(weatherPanel, BoxLayout.Y_AXIS));

@@ -1,5 +1,8 @@
 // Central place to collect lightweight runtime metrics for the overlay.
 // Designed to be GUI-only and cheap to update.
+
+package Dashboard;
+
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;

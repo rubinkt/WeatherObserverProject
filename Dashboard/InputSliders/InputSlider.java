@@ -1,4 +1,4 @@
-package InputSliders;
+package Dashboard.InputSliders;
 import java.awt.BorderLayout;
 
 import javax.swing.BoxLayout;
