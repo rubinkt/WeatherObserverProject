@@ -56,14 +56,14 @@ public class ControlsPanel extends JPanel {
 
         // Add a box to set the sky condition
         JPanel weatherStatePanel = new JPanel();
+        weatherPanel.add(weatherStatePanel);
         weatherStateBox = new JComboBox<>(new String[]{"Sunny", "Overcast", "Raining", "Snowing"});
-        weatherStateBox.addActionListener(e -> {
+        weatherStatePanel.add(weatherStateBox);
+        weatherStateBox.addItemListener(e -> {
             this.weatherSubject.setSkyCondition(weatherStateBox.getSelectedItem().toString());
         });
 
         weatherStatePanel.add(new JLabel("Weather Conditions: "));
-        weatherStatePanel.add(weatherStateBox);
-        weatherPanel.add(weatherStatePanel);
         this.add(weatherPanel);
     }
 

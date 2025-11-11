@@ -62,42 +62,53 @@ public class AlertsSubject extends JPanel implements UISubject, UIObserver {
     }
 
     // Return a copy of the alerts list to prevent external modification
-    public ArrayList<String> getAlerts() {
+    public ArrayList<String> getAlerts() 
+    {
         return new ArrayList<>(alerts);
     }
 
-    public void update(UIUpdate u) {
-        switch (u.getClass().getName()) {
+    public void update(UIUpdate u) 
+    {
+        switch(u.getClass().getName()) 
+        {
             case "AirQualitySubjectState":
                 AirQualitySubjectState AQSstate = (AirQualitySubjectState) u;
-                if (AQSstate.getAirParticles() < 500) {
-                    this.addAlert("Air Particles is below 500. | Air Particles: " + AQSstate.getAirParticles());
+                if(AQSstate.getAirParticles() > 20) 
+                {
+                    this.addAlert("Air Particles is above 20. | Air Particles: " + AQSstate.getAirParticles());
                 }
-                if (AQSstate.getOzone() < 70) {
-                    this.addAlert("Ozone is below 70. | Ozone: " + AQSstate.getOzone());
+                if(AQSstate.getOzone() > 20) 
+                {
+                    this.addAlert("Ozone is above 20. | Ozone: " + AQSstate.getOzone());
                 }
                 break;
             case "WeatherSubjectState":
                 WeatherSubjectState WSstate = (WeatherSubjectState) u;
-                if (WSstate.getTemp() > 100) {
-                    this.addAlert("Temperature is above 100. | Temperature: " + WSstate.getTemp());
+                if(WSstate.getTemp() > 80) 
+                {
+                    this.addAlert("Temperature is above 80. | Temperature: " + WSstate.getTemp());
                 }
-                if (WSstate.getTemp() < 20) {
+                if(WSstate.getTemp() < 20) 
+                {
                     this.addAlert("Temperature is below 20. | Temperature: " + WSstate.getTemp());
                 }
                 break;
         }
     }
 
-    public void onNotified(UISubject subj) {
-        switch (subj.getClass().getName()) {
+    public void onNotified(UISubject subj) 
+    {
+        switch (subj.getClass().getName()) 
+        {
             case "AirQualitySubject":
                 AirQualitySubject aqs = (AirQualitySubject) subj;
                 AirQualitySubjectState AQSstate = aqs.getState();
-                if (AQSstate.getAirParticles() < 500) {
+                if(AQSstate.getAirParticles() < 500) 
+                {
                     this.addAlert("Air Particles is below 500. | Air Particles: " + AQSstate.getAirParticles());
                 }
-                if (AQSstate.getOzone() < 70) {
+                if(AQSstate.getOzone() < 70) 
+                {
                     this.addAlert("Ozone is below 70. | Ozone: " + AQSstate.getOzone());
                 }
                 break;

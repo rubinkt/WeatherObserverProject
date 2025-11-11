@@ -5,7 +5,7 @@ import Subjects.AirQualitySubject;
 public class OzoneSlider extends InputSlider {
     
     private static final int minOzone = 0;
-    private static final int maxOzone = 8;
+    private static final int maxOzone = 20;
     private static final int defaultOzone = 4;
 
     public OzoneSlider(AirQualitySubject observer) {

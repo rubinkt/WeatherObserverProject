@@ -9,19 +9,22 @@ import Subjects.UIUpdate;
 import Subjects.AlertsSubject;
 import Subjects.AlertsSubjectState;
 
-public class AlertsPanel extends JPanel implements UIObserver {
-
+public class AlertsPanel extends JPanel implements UIObserver 
+{
     private List<String> alerts;
 
-    public AlertsPanel() {
+    public AlertsPanel() 
+    {
         // Use a grid layout: 0 rows = dynamic, 2 columns
         setLayout(new GridLayout(0, 2, 5, 5));
         setPreferredSize(new Dimension(300, 200));
     }
 
     // Push mode: receives UIUpdate snapshot
-    public void update(UIUpdate update) {
-        if (update instanceof AlertsSubjectState) {
+    public void update(UIUpdate update) 
+    {
+        if(update instanceof AlertsSubjectState) 
+        {
             AlertsSubjectState state = (AlertsSubjectState) update;
             alerts = state.getAlerts();
             refreshAlerts();
@@ -29,8 +32,10 @@ public class AlertsPanel extends JPanel implements UIObserver {
     }
 
     // Pull mode: queries the subject for current state
-    public void onNotified(UISubject subj) {
-        if (subj instanceof AlertsSubject) {
+    public void onNotified(UISubject subj) 
+    {
+        if(subj instanceof AlertsSubject) 
+        {
             AlertsSubject alertsSubject = (AlertsSubject) subj;
             alerts = alertsSubject.getAlerts();
             refreshAlerts();
@@ -38,10 +43,12 @@ public class AlertsPanel extends JPanel implements UIObserver {
     }
 
     // Redraw the alerts in GUI
-    private void refreshAlerts() {
+    private void refreshAlerts() 
+    {
         removeAll(); // clear old badges
         if (alerts != null) {
-            for (String alert : alerts) {
+            for (String alert : alerts) 
+            {
                 JLabel badge = new JLabel(alert, SwingConstants.CENTER);
                 badge.setOpaque(true);
                 badge.setBackground(Color.RED);
@@ -53,5 +60,17 @@ public class AlertsPanel extends JPanel implements UIObserver {
         }
         revalidate();
         repaint();
+    }
+
+    public String changeAlerts()
+    {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < alerts.size(); i++)
+        {
+            sb.append(alerts.get(i));
+            sb.append("  ");
+        }
+        String ret = sb.toString();
+        return ret;
     }
 }

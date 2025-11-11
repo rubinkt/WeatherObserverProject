@@ -25,38 +25,48 @@ public class WeatherSubject extends JPanel implements UISubject {
     }
     public void notifyObservers(Channel c) {
         UIUpdate currentState = new WeatherSubjectState(this);
-        if (isPush) {
-            for (UIObserver o : observers) {
+        if(isPush) 
+        {
+            for (UIObserver o : observers) 
+            {
                 o.update(currentState);
             }
         }
-        else {
-            for (UIObserver o: observers) {
+        else 
+        {
+            for (UIObserver o: observers) 
+            {
                 o.onNotified(this);
             }
         }
     }
-    public void setMode(boolean isPush) {
+    public void setMode(boolean isPush) 
+    {
         this.isPush = isPush;
     }
 
-    public WeatherSubjectState getState() {
+    public WeatherSubjectState getState() 
+    {
         return new WeatherSubjectState(this);
     }
 
-    public void setTemp(double temp) {
+    public void setTemp(double temp) 
+    {
         this.temp = temp;
         notifyObservers(Channel.WEATHER);
     }
-    public void setSkyCondition(String condition) {
+    public void setSkyCondition(String condition) 
+    {
         this.skyCondition = condition;
         notifyObservers(Channel.WEATHER);
     }
 
-    public double getTemp() {
+    public double getTemp() 
+    {
         return temp;
     }
-    public String getSkyCondition() {
+    public String getSkyCondition() 
+    {
         return skyCondition;
     }
 }

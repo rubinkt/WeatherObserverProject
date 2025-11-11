@@ -115,11 +115,17 @@ public class DashboardFrame extends JFrame
         JLabel aqOzoneLabel = new JLabel();
         aqPanel.add(aqOzoneLabel);
 
+        //Label for alerts
+        JLabel alertLabel = new JLabel();
+        alertsPanel.add(alertLabel);
+
         new javax.swing.Timer(500, e -> diagLabel.setText(Diagnostics.get().summaryHtml())).start();
         new javax.swing.Timer(500, e -> weatherTemperatureLabel.setText(weatherPanel.updateTemperatureString())).start();
-        new javax.swing.Timer(500, e -> weatherSkyConditionLabel.setText(weatherPanel.updateSkyConditionString())).start();
+        new javax.swing.Timer(100, e -> weatherSkyConditionLabel.setText(weatherPanel.updateSkyConditionString())).start();
         new javax.swing.Timer(100, e -> aqParticlesLabel.setText(aqPanel.updateAirParticlesString())).start();
         new javax.swing.Timer(100, e -> aqOzoneLabel.setText(aqPanel.updateOzoneString())).start();
+
+        new javax.swing.Timer(100, e -> alertLabel.setText(alertsPanel.changeAlerts())).start();
     }
 
     private void toggleTheme(boolean dark) 
