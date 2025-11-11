@@ -3,8 +3,6 @@ package Observers;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
-import javax.tools.Diagnostic;
-
 import Dashboard.Diagnostics;
 import Enums.Channel;
 import Subjects.UISubject;

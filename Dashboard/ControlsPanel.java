@@ -7,9 +7,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-
 import Dashboard.InputSliders.AirParticlesSlider;
 import Dashboard.InputSliders.MapXSlider;
 import Dashboard.InputSliders.MapYSlider;
