@@ -2,8 +2,7 @@ package Observers;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
-
+import java.util.ArrayList;
 import Subjects.UISubject;
 import Subjects.UIUpdate;
 import Subjects.AlertsSubject;
@@ -11,13 +10,14 @@ import Subjects.AlertsSubjectState;
 
 public class AlertsPanel extends JPanel implements UIObserver 
 {
-    private List<String> alerts;
+    private ArrayList<String> alerts;
 
     public AlertsPanel() 
     {
         // Use a grid layout: 0 rows = dynamic, 2 columns
         setLayout(new GridLayout(0, 2, 5, 5));
         setPreferredSize(new Dimension(300, 200));
+        alerts = new ArrayList<String>();
     }
 
     // Push mode: receives UIUpdate snapshot
