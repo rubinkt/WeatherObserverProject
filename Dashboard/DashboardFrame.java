@@ -10,18 +10,28 @@ public class DashboardFrame extends JFrame
 {
     private final WeatherSubject weatherSubject = new WeatherSubject();
     private final WeatherPanel weatherPanel = new WeatherPanel();
+    JLabel weatherTemperatureLabel = new JLabel();
+    JLabel weatherSkyConditionLabel = new JLabel();
 
     private final AlertsSubject alertSubject = new AlertsSubject();
     private final AlertsPanel alertsPanel = new AlertsPanel();
+    JLabel alertLabel = new JLabel();
 
     private final MapPanel mapPanel = new MapPanel();
 
     private final AirQualitySubject aqSubject = new AirQualitySubject();
     private final AirQualityPanel aqPanel = new AirQualityPanel();
+    JLabel aqParticlesLabel = new JLabel();
+    JLabel aqOzoneLabel = new JLabel();
 
     private final JLabel diagLabel = new JLabel();
 
     private static SubscriptionsPanel subsPanel;
+
+    JPanel subjectsPanel;
+
+    JPanel topBar;
+    JLabel title;
 
     private final TimeBar timeBar = new TimeBar();
 
@@ -33,8 +43,8 @@ public class DashboardFrame extends JFrame
         setLayout(new BorderLayout());
 
         // Top bar
-        JPanel topBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel title = new JLabel("Observer-Only Smart Dashboard");
+        topBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        title = new JLabel("Observer-Only Smart Dashboard");
         title.setFont(title.getFont().deriveFont(16f));
         JToggleButton themeToggle = new JToggleButton("Dark");
         JToggleButton diagToggle = new JToggleButton("Diagnostics");
@@ -47,13 +57,13 @@ public class DashboardFrame extends JFrame
         topBar.add(diagToggle);
         add(topBar, BorderLayout.NORTH);
 
-        //Subscription 
+        // Subscription 
         subsPanel = new SubscriptionsPanel(weatherSubject, weatherPanel, aqSubject, aqPanel, alertSubject, alertsPanel);
         subsPanel.setPreferredSize(new Dimension(240, 100));
         add(subsPanel, BorderLayout.WEST);
 
-        JPanel subjectsPanel = new ControlsPanel(weatherSubject, aqSubject, mapPanel);
-        
+        // Subjects
+        subjectsPanel = new ControlsPanel(weatherSubject, aqSubject, mapPanel);
         add(subjectsPanel, BorderLayout.EAST);
 
         // Observer area with draggable absolute layout
@@ -100,24 +110,19 @@ public class DashboardFrame extends JFrame
 
         //Label for temperature
         weatherPanel.setLayout(new BoxLayout(weatherPanel, BoxLayout.Y_AXIS));
-        JLabel weatherTemperatureLabel = new JLabel();
         weatherPanel.add(weatherTemperatureLabel);
 
         //Label for sky condition
-        JLabel weatherSkyConditionLabel = new JLabel();
         weatherPanel.add(weatherSkyConditionLabel);
 
         //Label for air quality
         aqPanel.setLayout(new BoxLayout(aqPanel, BoxLayout.Y_AXIS));
-        JLabel aqParticlesLabel = new JLabel();
         aqPanel.add(aqParticlesLabel);
 
         //Label for ozone
-        JLabel aqOzoneLabel = new JLabel();
         aqPanel.add(aqOzoneLabel);
 
         //Label for alerts
-        JLabel alertLabel = new JLabel();
         alertsPanel.add(alertLabel);
 
         new javax.swing.Timer(500, e -> diagLabel.setText(Diagnostics.get().summaryHtml())).start();
@@ -126,6 +131,7 @@ public class DashboardFrame extends JFrame
         new javax.swing.Timer(100, e -> aqParticlesLabel.setText(aqPanel.updateAirParticlesString())).start();
         new javax.swing.Timer(100, e -> aqOzoneLabel.setText(aqPanel.updateOzoneString())).start();
 
+        //Not Working
         new javax.swing.Timer(100, e -> alertLabel.setText(alertsPanel.changeAlerts())).start();
     }
 
@@ -134,10 +140,33 @@ public class DashboardFrame extends JFrame
         Color bg = dark ? new Color(34,34,34) : UIManager.getColor("Panel.background");
         Color fg = dark ? Color.WHITE : UIManager.getColor("Label.foreground");
         getContentPane().setBackground(bg);
-        subsPanel.setBackground(bg);
-        // naive theme propagation:
         SwingUtilities.updateComponentTreeUI(this);
-        // ensure diag text readable
-        diagLabel.setForeground(fg);
+
+        //Subscriptions Panel Dark Mode
+        subsPanel.setBackground(bg);
+
+        //Subjects Panel Dark Mode
+        subjectsPanel.setBackground(bg);
+        
+        //Map Dark Mode
+        mapPanel.setBackground(bg);
+
+        //Weather Panel Dark Mode
+        weatherPanel.setBackground(bg);
+        weatherTemperatureLabel.setForeground(fg);
+        weatherSkyConditionLabel.setForeground(fg);
+
+        //Air Quality Panel Dark Mode
+        aqPanel.setBackground(bg);
+        aqParticlesLabel.setForeground(fg);
+        aqOzoneLabel.setForeground(fg);
+
+        //Alerts Panel Dark Mode
+        alertsPanel.setBackground(bg);
+        alertLabel.setForeground(fg);
+
+        //Title and Top Bar Dark Mode
+        topBar.setBackground(bg);
+        title.setForeground(fg);
     }
 }

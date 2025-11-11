@@ -117,13 +117,13 @@ public class AlertsSubject extends JPanel implements UISubject, UIObserver
             case "AirQualitySubject":
                 AirQualitySubject aqs = (AirQualitySubject) subj;
                 AirQualitySubjectState AQSstate = aqs.getState();
-                if(AQSstate.getAirParticles() < 500) 
+                if(AQSstate.getAirParticles() > 20) 
                 {
-                    this.addAlert("Air Particles is below 500. | Air Particles: " + AQSstate.getAirParticles());
+                    this.addAlert("Air Particles is above 20. | Air Particles: " + AQSstate.getAirParticles());
                 }
-                if(AQSstate.getOzone() < 70) 
+                if(AQSstate.getOzone() > 20) 
                 {
-                    this.addAlert("Ozone is below 70. | Ozone: " + AQSstate.getOzone());
+                    this.addAlert("Ozone is above 20. | Ozone: " + AQSstate.getOzone());
                 }
                 break;
             case "WeatherSubject":

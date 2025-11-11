@@ -5,6 +5,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 import InputSliders.AirParticlesSlider;
 import InputSliders.MapXSlider;
@@ -45,7 +47,8 @@ public class ControlsPanel extends JPanel {
         createMapPanel();
     }
     
-    private void createWeatherPanel() {
+    private void createWeatherPanel() 
+    {
         // Define the weather panel
         weatherPanel = new JPanel();
         weatherPanel.setLayout(new BoxLayout(weatherPanel, BoxLayout.Y_AXIS));
@@ -67,7 +70,8 @@ public class ControlsPanel extends JPanel {
         this.add(weatherPanel);
     }
 
-    private void createAirQualityPanel() {
+    private void createAirQualityPanel() 
+    {
         airQualityStatePanel = new JPanel();
         airQualityStatePanel.setLayout(new BoxLayout(airQualityStatePanel, BoxLayout.Y_AXIS));
         airQualityStatePanel.setBorder(BorderFactory.createTitledBorder("Air Quality"));
@@ -81,7 +85,8 @@ public class ControlsPanel extends JPanel {
         add(airQualityStatePanel);
     }
 
-    public void createMapPanel() {
+    public void createMapPanel() 
+    {
         mapPanel = new JPanel();
         mapPanel.setLayout(new BoxLayout(mapPanel, BoxLayout.Y_AXIS));
         mapPanel.setBorder(BorderFactory.createTitledBorder("Map Coordinates"));
