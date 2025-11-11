@@ -19,10 +19,9 @@ public class ControlsPanel extends JPanel {
     private WeatherSubject weatherSubject;
 
     private JPanel airQualityStatePanel;
+    private AirQualitySubject airQualitySubject;
     
     private JPanel mapPanel;
-
-    private AirQualitySubject airQualitySubject;
     private MapPanel mapSubject;
 
     public ControlsPanel(WeatherSubject weatherSubject, AirQualitySubject airQualitySubject, MapPanel mapSubject) {

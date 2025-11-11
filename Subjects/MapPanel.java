@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import Observers.*;
-import javafx.event.ActionEvent;
 
 public class MapPanel extends JPanel implements UISubject, ActionListener
 {
