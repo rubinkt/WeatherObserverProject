@@ -98,16 +98,28 @@ public class DashboardFrame extends JFrame
         aqSubject.register(aqPanel, Channel.AIR_QUALITY);
 
         //Label for temperature
-        JLabel weatherLabel = new JLabel();
-        weatherPanel.add(weatherLabel);
+        weatherPanel.setLayout(new BoxLayout(weatherPanel, BoxLayout.Y_AXIS));
+        JLabel weatherTemperatureLabel = new JLabel();
+        weatherPanel.add(weatherTemperatureLabel);
 
-        JLabel aqLabel = new JLabel();
-        aqPanel.add(aqLabel);
+        //Label for sky condition
+        JLabel weatherSkyConditionLabel = new JLabel();
+        weatherPanel.add(weatherSkyConditionLabel);
+
+        //Label for air quality
+        aqPanel.setLayout(new BoxLayout(aqPanel, BoxLayout.Y_AXIS));
+        JLabel aqParticlesLabel = new JLabel();
+        aqPanel.add(aqParticlesLabel);
+
+        //Label for ozone
+        JLabel aqOzoneLabel = new JLabel();
+        aqPanel.add(aqOzoneLabel);
 
         new javax.swing.Timer(500, e -> diagLabel.setText(Diagnostics.get().summaryHtml())).start();
-        new javax.swing.Timer(500, e -> weatherLabel.setText(weatherPanel.updateString())).start();
-        new javax.swing.Timer(100, e -> aqLabel.setText(aqPanel.updateString())).start();
-
+        new javax.swing.Timer(500, e -> weatherTemperatureLabel.setText(weatherPanel.updateTemperatureString())).start();
+        new javax.swing.Timer(500, e -> weatherSkyConditionLabel.setText(weatherPanel.updateSkyConditionString())).start();
+        new javax.swing.Timer(100, e -> aqParticlesLabel.setText(aqPanel.updateAirParticlesString())).start();
+        new javax.swing.Timer(100, e -> aqOzoneLabel.setText(aqPanel.updateOzoneString())).start();
     }
 
     private void toggleTheme(boolean dark) 

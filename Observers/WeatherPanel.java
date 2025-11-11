@@ -1,9 +1,7 @@
 package Observers;
 
-import java.awt.BorderLayout;
 import java.util.ArrayList;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Subjects.UISubject;
@@ -54,8 +52,12 @@ public class WeatherPanel extends JPanel implements UIObserver{
         }
     }
 
-    public String updateString()
+    public String updateTemperatureString()
     {
-        return "Temperature: " + temp + " Sky Condition: " + skyCondition;
+        return "Temperature: " + temp;
+    }
+
+    public String updateSkyConditionString() {
+        return "Sky Condition: " + skyCondition;
     }
 }
