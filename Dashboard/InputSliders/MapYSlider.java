@@ -1,4 +1,4 @@
-package InputSliders;
+package Dashboard.InputSliders;
 
 import Subjects.MapPanel;
 
