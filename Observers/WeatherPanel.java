@@ -1,7 +1,9 @@
 package Observers;
 
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Subjects.UISubject;
@@ -41,7 +43,8 @@ public class WeatherPanel extends JPanel implements UIObserver{
         skyCondition = states.get(stateIndex).getSkyCondition();
     }
 
-    public void changeState(int n) { // if n is negative, it goes backwards; if n is positive, it goes forward
+    public void changeState(int n) 
+    { // if n is negative, it goes backwards; if n is positive, it goes forward
         int potentialNewStateIndex = stateIndex + n;
         if (potentialNewStateIndex >= 0 && potentialNewStateIndex < states.size()) {
             stateIndex = potentialNewStateIndex;
@@ -50,8 +53,9 @@ public class WeatherPanel extends JPanel implements UIObserver{
             skyCondition = newState.getSkyCondition();
         }
     }
-    
-    public void print() {
-        System.out.println("temp is " + temp + " and sky is " + skyCondition);
+
+    public String updateString()
+    {
+        return "Temperature: " + temp + " Sky Condition: " + skyCondition;
     }
 }

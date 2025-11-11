@@ -52,7 +52,8 @@ public class AirQualityPanel extends JPanel implements UIObserver {
         }
     }
 
-    public void print() {
-        System.out.println("Air Quality - Air Particles: " + airParticles + ", Ozone: " + ozone);
+    public String updateString() 
+    {
+        return "Air Quality - Air Particles: " + airParticles + "ppb  Ozone: " + ozone + "μg/cubic meter";
     }
-    }
+}
