@@ -101,8 +101,13 @@ public class DashboardFrame extends JFrame
         JLabel weatherLabel = new JLabel();
         weatherPanel.add(weatherLabel);
 
+        JLabel aqLabel = new JLabel();
+        aqPanel.add(aqLabel);
+
         new javax.swing.Timer(500, e -> diagLabel.setText(Diagnostics.get().summaryHtml())).start();
         new javax.swing.Timer(500, e -> weatherLabel.setText(weatherPanel.updateString())).start();
+        new javax.swing.Timer(100, e -> aqLabel.setText(aqPanel.updateString())).start();
+
     }
 
     private void toggleTheme(boolean dark) 
