@@ -5,7 +5,7 @@ import Subjects.MapPanel;
 public class MapYSlider extends InputSlider {
   
   private static final int minY = 0;
-  private static final int maxY = 300;
+  private static final int maxY = 250;
   private static final int defaultY = 0;
 
   public MapYSlider(MapPanel observer) {

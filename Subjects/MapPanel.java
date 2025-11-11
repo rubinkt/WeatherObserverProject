@@ -23,7 +23,7 @@ public class MapPanel extends JPanel implements UISubject, ActionListener
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setFont(label.getFont().deriveFont(Font.BOLD, 18f));
         add(label, BorderLayout.CENTER);
-        setBorder(BorderFactory.createTitledBorder("Map"));
+        // setBorder(BorderFactory.createTitledBorder("Map"));
         observers = new ArrayList<>();
     }
 
