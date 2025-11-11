@@ -20,6 +20,8 @@ public class WeatherPanel extends JPanel implements UIObserver{
     public WeatherPanel() {
         states = new ArrayList<WeatherSubjectState>(STATES_LIMIT);
         stateIndex = -1;
+        skyCondition = "Sunny";
+        temp = 50;
     }
 
     public void update(UIUpdate u) {
@@ -54,10 +56,10 @@ public class WeatherPanel extends JPanel implements UIObserver{
 
     public String updateTemperatureString()
     {
-        return "Temperature: " + temp;
+        return "  Temperature: " + temp + " degrees";
     }
 
     public String updateSkyConditionString() {
-        return "Sky Condition: " + skyCondition;
+        return "  Sky Condition: " + skyCondition;
     }
 }

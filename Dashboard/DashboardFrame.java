@@ -95,6 +95,7 @@ public class DashboardFrame extends JFrame
         // Register observer and diagnostics updater
         weatherSubject.register(weatherPanel, Channel.WEATHER);
         alertSubject.register(alertsPanel, Channel.ALERTS);
+        weatherSubject.register(alertSubject, Channel.ALERTS);
         aqSubject.register(aqPanel, Channel.AIR_QUALITY);
 
         //Label for temperature

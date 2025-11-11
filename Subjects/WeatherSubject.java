@@ -6,24 +6,29 @@ import javax.swing.JPanel;
 import Enums.Channel;
 import Observers.UIObserver;
 
-public class WeatherSubject extends JPanel implements UISubject {
+public class WeatherSubject extends JPanel implements UISubject 
+{
     private boolean isPush;
     private ArrayList<UIObserver> observers;
     private double temp;
     private String skyCondition;
 
-    public WeatherSubject() {
+    public WeatherSubject() 
+    {
         isPush = true;
         observers = new ArrayList<UIObserver>();
     }
 
-    public void register(UIObserver o, Channel c) {
+    public void register(UIObserver o, Channel c) 
+    {
         observers.add(o);
     }
-    public void unregister(UIObserver o, Channel c) {
+    public void unregister(UIObserver o, Channel c) 
+    {
         observers.remove(o);
     }
-    public void notifyObservers(Channel c) {
+    public void notifyObservers(Channel c) 
+    {
         UIUpdate currentState = new WeatherSubjectState(this);
         if(isPush) 
         {

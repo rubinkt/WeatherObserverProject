@@ -21,6 +21,8 @@ public class AirQualityPanel extends JPanel implements UIObserver {
     public AirQualityPanel() {
         states = new ArrayList<AirQualitySubjectState>(STATES_LIMIT);
         stateIndex = -1;
+        airParticles = 5;
+        ozone = 4;
     }
 
     public void update(UIUpdate u) {
@@ -54,10 +56,10 @@ public class AirQualityPanel extends JPanel implements UIObserver {
 
     public String updateAirParticlesString() 
     {
-        return "Air Particles: " + airParticles;
+        return "  Air Particles: " + airParticles + " ppb";
     }
 
     public String updateOzoneString() {
-        return "ppb  Ozone: " + ozone + "μg/cubic meter";
+        return "  Ozone: " + ozone + " μg/cubic meter";
     }
 }
