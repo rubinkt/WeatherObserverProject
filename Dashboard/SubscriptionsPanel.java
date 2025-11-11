@@ -1,3 +1,5 @@
+package Dashboard;
+
 import javax.swing.*;
 
 import Enums.Channel;

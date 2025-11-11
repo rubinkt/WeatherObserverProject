@@ -1,3 +1,5 @@
+package Dashboard;
+
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
@@ -6,11 +8,11 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import InputSliders.AirParticlesSlider;
-import InputSliders.MapXSlider;
-import InputSliders.MapYSlider;
-import InputSliders.OzoneSlider;
-import InputSliders.TemperatureSlider;
+import Dashboard.InputSliders.AirParticlesSlider;
+import Dashboard.InputSliders.MapXSlider;
+import Dashboard.InputSliders.MapYSlider;
+import Dashboard.InputSliders.OzoneSlider;
+import Dashboard.InputSliders.TemperatureSlider;
 import Subjects.AirQualitySubject;
 import Subjects.MapPanel;
 import Subjects.WeatherSubject;
