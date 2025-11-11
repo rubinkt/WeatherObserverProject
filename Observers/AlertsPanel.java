@@ -16,7 +16,6 @@ public class AlertsPanel extends JPanel implements UIObserver {
     public AlertsPanel() {
         // Use a grid layout: 0 rows = dynamic, 2 columns
         setLayout(new GridLayout(0, 2, 5, 5));
-        setBorder(BorderFactory.createTitledBorder("Alerts Panel"));
         setPreferredSize(new Dimension(300, 200));
     }
 
