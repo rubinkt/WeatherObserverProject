@@ -8,7 +8,7 @@ import Observers.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 
-public class SubscriptionsPanel extends JPanel 
+public class SubscriptionsPanel extends JPanel
 {
 
     public SubscriptionsPanel(WeatherSubject weatherSubject, WeatherPanel weatherPanel,
@@ -68,16 +68,19 @@ public class SubscriptionsPanel extends JPanel
         weatherMode.addActionListener(e ->{
             boolean push = weatherMode.getSelectedItem().equals("Push");
             weatherSubject.setMode(push);
+            Diagnostics.get().setMode(Channel.WEATHER.toString(), weatherMode.getSelectedItem().toString());
         });
 
         aqMode.addActionListener(e ->{
             boolean push = aqMode.getSelectedItem().equals("Push");
             airSubject.setMode(push);
+            Diagnostics.get().setMode(Channel.AIR_QUALITY.toString(), aqMode.getSelectedItem().toString());
         });
 
         alertsMode.addActionListener(e ->{
             boolean push = alertsMode.getSelectedItem().equals("Push");
             alertsSubject.setMode(push);
+            Diagnostics.get().setMode(Channel.ALERTS.toString(), alertsMode.getSelectedItem().toString());
         });
 
         weatherActive.addItemListener(e -> {
