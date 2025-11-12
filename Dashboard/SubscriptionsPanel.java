@@ -15,7 +15,7 @@ public class SubscriptionsPanel extends JPanel
 
     public SubscriptionsPanel(WeatherSubject weatherSubject, WeatherPanel weatherPanel,
                                 AirQualitySubject airSubject, AirQualityPanel airPanel,
-                                AlertsSubject alertsSubject, AlertsPanel alertsPanel) 
+                                AlertsSubject alertsSubject, AlertsPanel alertsPanel, MapPanel mapPanel) 
     {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createTitledBorder("Subscriptions"));
@@ -67,6 +67,21 @@ public class SubscriptionsPanel extends JPanel
         alerts.add(alertsTop);
         add(alerts);
 
+        //Tarnsit Subscription Area
+        JPanel transit = new JPanel();
+        transit.setLayout(new BoxLayout(transit, BoxLayout.Y_AXIS));        
+        transit.setBorder(BorderFactory.createTitledBorder("Transit"));
+
+        JCheckBox transitActive = new JCheckBox("Active", true);
+        JComboBox<String> transitMode = new JComboBox<>(new String[]{"Push", "Pull"});
+        transitMode.setMaximumSize(new Dimension(80, 25));
+        JPanel transitTop = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        transitTop.add(transitActive);
+        transitTop.add(new JLabel("Mode: "));
+        transitTop.add(transitMode);
+        transit.add(transitTop);
+        add(transit);
+
         weatherMode.addActionListener(e ->{
             boolean push = weatherMode.getSelectedItem().equals("Push");
             weatherSubject.setMode(push);
@@ -83,6 +98,12 @@ public class SubscriptionsPanel extends JPanel
             boolean push = alertsMode.getSelectedItem().equals("Push");
             alertsSubject.setMode(push);
             Diagnostics.get().setMode(Channel.ALERTS.toString(), alertsMode.getSelectedItem().toString());
+        });
+
+        transitMode.addActionListener(e ->{
+            boolean push = transitMode.getSelectedItem().equals("Push");
+            mapPanel.setMode(push);
+            Diagnostics.get().setMode(Channel.TRANSIT.toString(), transitMode.getSelectedItem().toString());
         });
 
         weatherActive.addItemListener(e -> {
@@ -115,6 +136,17 @@ public class SubscriptionsPanel extends JPanel
             else
             {
                 alertsSubject.unregister(alertsPanel, Channel.ALERTS);
+            }
+        });
+
+        transitActive.addItemListener(e -> {
+            if(e.getStateChange() == ItemEvent.SELECTED)
+            {
+                mapPanel.register(alertsPanel, Channel.ALERTS);
+            }
+            else
+            {
+                mapPanel.unregister(alertsPanel, Channel.ALERTS);
             }
         });
     }

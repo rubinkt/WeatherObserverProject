@@ -60,7 +60,7 @@ public class DashboardFrame extends JFrame
         add(topBar, BorderLayout.NORTH);
 
         // Subscription 
-        subsPanel = new SubscriptionsPanel(weatherSubject, weatherPanel, aqSubject, aqPanel, alertSubject, alertsPanel);
+        subsPanel = new SubscriptionsPanel(weatherSubject, weatherPanel, aqSubject, aqPanel, alertSubject, alertsPanel, mapPanel);
         subsPanel.setPreferredSize(new Dimension(240, 100));
         add(subsPanel, BorderLayout.WEST);
 
@@ -110,6 +110,7 @@ public class DashboardFrame extends JFrame
         aqSubject.register(aqPanel, Channel.AIR_QUALITY);
         aqSubject.register(alertSubject, Channel.ALERTS);
         alertSubject.register(alertsPanel, Channel.ALERTS);
+        mapPanel.register(alertSubject, Channel.ALERTS);
 
         Diagnostics.get().setMode(Channel.WEATHER.toString(), "Push");
         Diagnostics.get().setMode(Channel.ALERTS.toString(), "Push");

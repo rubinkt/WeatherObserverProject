@@ -107,6 +107,17 @@ public class AlertsSubject extends JPanel implements UISubject, UIObserver
                     this.addAlert("Temperature is below 20. | Temperature: " + WSstate.getTemp());
                 }
                 break;
+            case "Subjects.MapPanelState":
+                MapPanelState mps = (MapPanelState) u;
+                if(mps.getCircleX() > 200) 
+                {
+                    this.addAlert("Circle is near East edge. | Circle Lattitude: " + mps.getCircleX());
+                }
+                if(mps.getCircleY() > 200) 
+                {
+                    this.addAlert("Circle is near South edge. | Circle Longitude: " + mps.getCircleY());
+                }
+                break;
         }
     }
 
@@ -114,7 +125,7 @@ public class AlertsSubject extends JPanel implements UISubject, UIObserver
     {
         switch (subj.getClass().getName()) 
         {
-            case "AirQualitySubject":
+            case "Subjects.AirQualitySubject":
                 AirQualitySubject aqs = (AirQualitySubject) subj;
                 AirQualitySubjectState AQSstate = aqs.getState();
                 if(AQSstate.getAirParticles() > 20) 
@@ -126,7 +137,7 @@ public class AlertsSubject extends JPanel implements UISubject, UIObserver
                     this.addAlert("Ozone is above 20. | Ozone: " + AQSstate.getOzone());
                 }
                 break;
-            case "WeatherSubject":
+            case "Subjects.WeatherSubject":
                 WeatherSubject ws = (WeatherSubject) subj;
                 WeatherSubjectState WSstate = ws.getState();
                 if (WSstate.getTemp() > 80) {
@@ -134,6 +145,18 @@ public class AlertsSubject extends JPanel implements UISubject, UIObserver
                 }
                 if (WSstate.getTemp() < 20) {
                     this.addAlert("Temperature is below 20. | Temperature: " + WSstate.getTemp());
+                }
+                break;
+            case "Subjects.MapPanelState":
+                MapPanel mp = (MapPanel) subj;
+                MapPanelState mps = mp.getState();
+                if(mps.getCircleX() > 200) 
+                {
+                    this.addAlert("Circle is near East edge. | Circle Lattitude: " + mps.getCircleX());
+                }
+                if(mps.getCircleY() > 200) 
+                {
+                    this.addAlert("Circle is near South edge. | Circle Longitude: " + mps.getCircleY());
                 }
                 break;
         }

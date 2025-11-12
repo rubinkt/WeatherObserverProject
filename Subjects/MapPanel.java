@@ -11,7 +11,7 @@ import Observers.*;
 
 public class MapPanel extends JPanel implements UISubject, ActionListener
 {
-    private boolean isPush;
+    private boolean isPush = true;
     private ArrayList<UIObserver> observers;
     private final JLabel label = new JLabel();
     private int circleX = 0;
@@ -25,6 +25,7 @@ public class MapPanel extends JPanel implements UISubject, ActionListener
         add(label, BorderLayout.CENTER);
         // setBorder(BorderFactory.createTitledBorder("Map"));
         observers = new ArrayList<>();
+        isPush = true;
     }
 
     @Override
@@ -74,6 +75,11 @@ public class MapPanel extends JPanel implements UISubject, ActionListener
         this.circleY = newY;
         notifyObservers(Channel.TRANSIT);
         repaint();
+    }
+
+    public MapPanelState getState() 
+    {
+        return new MapPanelState(this);
     }
 
     public int getCircleX() {
