@@ -89,7 +89,7 @@ public class DashboardFrame extends JFrame
         mapCard.setBounds(360, 20, 320, 300);
         airCard.setBounds(20, 240, 320, 180);
         alertsCard.setBounds(360, 340, 320, 160);
-        badgesCard.setBounds(20, 440, 250, 200);
+        badgesCard.setBounds(20, 440, 300, 200);
 
         observersPanel.add(weatherCard, JLayeredPane.DEFAULT_LAYER);
         observersPanel.add(mapCard, JLayeredPane.DEFAULT_LAYER);
