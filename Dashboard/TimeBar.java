@@ -43,9 +43,9 @@ public class TimeBar extends JPanel
         step.addActionListener(e -> advanceTick());
         speed.addActionListener(e -> {
             String s = (String)speed.getSelectedItem();
-            if ("5×".equals(s)) speedMultiplier = 5;
-            else if ("20×".equals(s)) speedMultiplier = 20;
-            else speedMultiplier = 1;
+            if ("5×".equals(s)) adjustSpeedMultiplier(5);
+            else if ("20×".equals(s)) adjustSpeedMultiplier(20);
+            else adjustSpeedMultiplier(1);
         });
 
         // Scrubber listener
@@ -64,6 +64,11 @@ public class TimeBar extends JPanel
         playing = !playing;
         playPause.setText(playing ? "Pause" : "Play");
         if (playing) simTimer.start(); else simTimer.stop();
+    }
+
+    private void adjustSpeedMultiplier(int newMultiplier) {
+        speedMultiplier = newMultiplier;
+        Diagnostics.get().set_EMA_ALPHA(newMultiplier * 1.0);
     }
 
     private void advanceTick() 

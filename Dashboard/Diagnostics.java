@@ -33,7 +33,7 @@ public class Diagnostics
     private final Map<String, String> modeBySubject = new java.util.concurrent.ConcurrentHashMap<>();
 
     // EMA parameter (reasonable smoothing).
-    private final double EMA_ALPHA = 0.18;
+    private double EMA_ALPHA = .18;
 
     private Diagnostics() 
     {
@@ -44,6 +44,11 @@ public class Diagnostics
             droppedFrames.put(c, 0);
             updateCount.put(c, 0);
         }
+    }
+
+    // set EMA_ALPHA for smoothness
+    public void set_EMA_ALPHA(double new_EMA_ALPHA) {
+        EMA_ALPHA = new_EMA_ALPHA;
     }
 
     // Called whenever a subject emits an event for the given channel.
