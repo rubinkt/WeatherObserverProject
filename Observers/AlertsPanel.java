@@ -47,8 +47,9 @@ public class AlertsPanel extends JPanel implements UIObserver
     {
         removeAll(); // clear old badges
         if (alerts != null) {
-            for (String alert : alerts) 
+            for (int x = Math.max(0, alerts.size() - 10); x < alerts.size(); x++) 
             {
+                String alert = alerts.get(x);
                 JLabel badge = new JLabel(alert, SwingConstants.CENTER);
                 badge.setOpaque(true);
                 badge.setBackground(Color.RED);
