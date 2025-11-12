@@ -1,6 +1,10 @@
 package Observers;
 
 import javax.swing.*;
+
+import Dashboard.Diagnostics;
+import Enums.Channel;
+
 import java.awt.*;
 import java.util.ArrayList;
 import Subjects.UISubject;
@@ -28,6 +32,7 @@ public class AlertsPanel extends JPanel implements UIObserver
             AlertsSubjectState state = (AlertsSubjectState) update;
             alerts = state.getAlerts();
             refreshAlerts();
+            Diagnostics.get().recordEvent(Channel.ALERTS);
         }
     }
 
@@ -39,6 +44,7 @@ public class AlertsPanel extends JPanel implements UIObserver
             AlertsSubject alertsSubject = (AlertsSubject) subj;
             alerts = alertsSubject.getAlerts();
             refreshAlerts();
+            Diagnostics.get().recordEvent(Channel.ALERTS);
         }
     }
 

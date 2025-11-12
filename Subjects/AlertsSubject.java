@@ -6,6 +6,8 @@ import Enums.Channel;
 import Observers.UIObserver;
 import javax.swing.JPanel;
 
+import Dashboard.Diagnostics;
+
 /**
  * AlertsSubject sends alerts (strings) to observers.
  */
@@ -95,6 +97,7 @@ public class AlertsSubject extends JPanel implements UISubject, UIObserver
                 {
                     this.addAlert("Ozone is above 20. | Ozone: " + AQSstate.getOzone());
                 }
+                Diagnostics.get().recordEvent(Channel.AIR_QUALITY);
                 break;
             case "Subjects.WeatherSubjectState":
                 WeatherSubjectState WSstate = (WeatherSubjectState) u;
@@ -106,6 +109,7 @@ public class AlertsSubject extends JPanel implements UISubject, UIObserver
                 {
                     this.addAlert("Temperature is below 20. | Temperature: " + WSstate.getTemp());
                 }
+                Diagnostics.get().recordEvent(Channel.WEATHER);
                 break;
             case "Subjects.MapPanelState":
                 MapPanelState mps = (MapPanelState) u;
@@ -117,6 +121,7 @@ public class AlertsSubject extends JPanel implements UISubject, UIObserver
                 {
                     this.addAlert("Circle is near South edge. | Circle Longitude: " + mps.getCircleY());
                 }
+                Diagnostics.get().recordEvent(Channel.TRANSIT);
                 break;
         }
     }
@@ -136,6 +141,7 @@ public class AlertsSubject extends JPanel implements UISubject, UIObserver
                 {
                     this.addAlert("Ozone is above 20. | Ozone: " + AQSstate.getOzone());
                 }
+                Diagnostics.get().recordEvent(Channel.AIR_QUALITY);
                 break;
             case "Subjects.WeatherSubject":
                 WeatherSubject ws = (WeatherSubject) subj;
@@ -146,6 +152,7 @@ public class AlertsSubject extends JPanel implements UISubject, UIObserver
                 if (WSstate.getTemp() < 20) {
                     this.addAlert("Temperature is below 20. | Temperature: " + WSstate.getTemp());
                 }
+                Diagnostics.get().recordEvent(Channel.WEATHER);
                 break;
             case "Subjects.MapPanelState":
                 MapPanel mp = (MapPanel) subj;
@@ -158,6 +165,7 @@ public class AlertsSubject extends JPanel implements UISubject, UIObserver
                 {
                     this.addAlert("Circle is near South edge. | Circle Longitude: " + mps.getCircleY());
                 }
+                Diagnostics.get().recordEvent(Channel.TRANSIT);
                 break;
         }
     }

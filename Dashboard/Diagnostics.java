@@ -17,6 +17,9 @@ public class Diagnostics
     // Track last update wall-clock time (ms) per channel.
     private final Map<Channel, Long> lastUpdateMs = new EnumMap<>(Channel.class);
 
+    // Track update count for each channel
+    private final Map<Channel, Integer> updateCount = new EnumMap<>(Channel.class);
+
     // Simple queue depth counters per channel (incremented when we detect a pending delivery).
     private final Map<Channel, AtomicInteger> queueDepth = new EnumMap<>(Channel.class);
 
@@ -39,6 +42,7 @@ public class Diagnostics
             queueDepth.put(c, new AtomicInteger(0));
             latencyEmaMs.put(c, 0.0);
             droppedFrames.put(c, 0);
+            updateCount.put(c, 0);
         }
     }
 
@@ -46,6 +50,8 @@ public class Diagnostics
     public void recordEvent(Channel ch) 
     {
         lastUpdateMs.put(ch, System.currentTimeMillis());
+        updateCount.put(ch, updateCount.get(ch) + 1);
+
     }
 
     // Update latency EMA in milliseconds.
@@ -81,12 +87,13 @@ public class Diagnostics
         {
             Long t = lastUpdateMs.get(c);
             String age = (t == null) ? "never" : (System.currentTimeMillis() - t) + " ms";
-            sb.append(String.format("<b>%s</b>: last=%s q=%d lat=%.2fms drop=%d<br>",
+            sb.append(String.format("<b>%s</b>: last=%s q=%d lat=%.2fms drop=%d count=%d<br>",
                     c,
                     age,
                     queueDepth.get(c).get(),
                     latencyEmaMs.getOrDefault(c, 0.0),
-                    droppedFrames.getOrDefault(c, 0)
+                    droppedFrames.getOrDefault(c, 0),
+                    updateCount.get(c)
             ));
         }
         sb.append("<hr>");

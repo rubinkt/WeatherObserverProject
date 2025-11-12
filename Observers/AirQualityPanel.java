@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import Dashboard.Diagnostics;
+import Enums.Channel;
 import Subjects.AirQualitySubject;
 import Subjects.AirQualitySubjectState;
 import Subjects.UISubject;
@@ -32,6 +34,7 @@ public class AirQualityPanel extends JPanel implements UIObserver {
         states.add((AirQualitySubjectState) u);
         airParticles = states.get(stateIndex).getAirParticles();
         ozone = states.get(stateIndex).getOzone();
+        Diagnostics.get().recordEvent(Channel.AIR_QUALITY);
     }
 
     public void onNotified(UISubject subj) {
@@ -42,6 +45,7 @@ public class AirQualityPanel extends JPanel implements UIObserver {
         states.add(aqs.getState());
         airParticles = states.get(stateIndex).getAirParticles();
         ozone = states.get(stateIndex).getOzone();
+        Diagnostics.get().recordEvent(Channel.AIR_QUALITY);
     }
 
     public void changeState(int n) { // if n is negative, it goes backwards; if n is positive, it goes forward
