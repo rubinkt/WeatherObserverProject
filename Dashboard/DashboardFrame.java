@@ -26,6 +26,8 @@ public class DashboardFrame extends JFrame
     JLabel aqParticlesLabel = new JLabel();
     JLabel aqOzoneLabel = new JLabel();
 
+    private final MiniBadgeBar mbb = new MiniBadgeBar();
+
     private final JLabel diagLabel = new JLabel();
 
     private static SubscriptionsPanel subsPanel;
@@ -80,17 +82,20 @@ public class DashboardFrame extends JFrame
         DraggableCard mapCard = new DraggableCard("Map", mapPanel);
         DraggableCard airCard = new DraggableCard("Air Quality", aqPanel);
         DraggableCard alertsCard = new DraggableCard("Alerts", alertsPanel);
+        DraggableCard badgesCard = new DraggableCard("Badges", mbb);
 
         // initial bounds
         weatherCard.setBounds(20, 20, 320, 200);
         mapCard.setBounds(360, 20, 320, 300);
         airCard.setBounds(20, 240, 320, 180);
         alertsCard.setBounds(360, 340, 320, 160);
+        badgesCard.setBounds(20, 440, 250, 200);
 
         observersPanel.add(weatherCard, JLayeredPane.DEFAULT_LAYER);
         observersPanel.add(mapCard, JLayeredPane.DEFAULT_LAYER);
         observersPanel.add(airCard, JLayeredPane.DEFAULT_LAYER);
         observersPanel.add(alertsCard, JLayeredPane.DEFAULT_LAYER);
+        observersPanel.add(badgesCard, JLayeredPane.DEFAULT_LAYER);
 
         // Adding TimeBar
         add(timeBar, BorderLayout.SOUTH);
@@ -112,6 +117,7 @@ public class DashboardFrame extends JFrame
         aqSubject.register(aqPanel, Channel.AIR_QUALITY);
         aqSubject.register(alertSubject, Channel.ALERTS);
         alertSubject.register(alertsPanel, Channel.ALERTS);
+        alertSubject.register(mbb,Channel.ALERTS);
         mapPanel.register(alertSubject, Channel.ALERTS);
 
         Diagnostics.get().setMode(Channel.WEATHER.toString(), "Push");
@@ -180,5 +186,8 @@ public class DashboardFrame extends JFrame
         //Title and Top Bar Dark Mode
         topBar.setBackground(bg);
         title.setForeground(fg);
+
+        // badge bar dark mode
+        mbb.setBackground(bg);
     }
 }
